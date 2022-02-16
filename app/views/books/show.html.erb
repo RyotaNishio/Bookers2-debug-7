@@ -32,10 +32,11 @@
       </table>
 
       <%= render 'layouts/errors', obj: @book_comment %>
-      <div class="book_comment">
+      <div class="book_comment col-md-5">
+        <h4>Comments</h4>
         <table class="table">
           <tbody>
-            <%= @book.book_comments.each do |comment| %>
+            <% @book.book_comments.each do |comment| %>
             <tr>
               <td>
                 <%= link_to user_path(comment.user) do %>
@@ -56,7 +57,7 @@
       </div>
       <div>
         <%= form_with model:[@book, @book_comment] do |f| %>
-          <%= f.text_area :comment, rows:'5' %>
+          <%= f.text_area :comment, rows:'5', class: "form-control" %>
           <%= f.submit "送信" %>
         <% end %>
       </div>
