@@ -1,0 +1,34 @@
+<h2><%= list_title %></h2>
+<% if users.exists? %>
+  <% users.each do |user| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size:"40x40" %></td>
+          <td><%= user.name %></td>
+          <td>
+            <%= link_to user_followings_path(user.id) do %>
+              フォロー数: <%= user.followings.count %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_followers_path(user.id) do %>
+              フォロワー数: <%= user.followers.count %>
+            <% end %>
+          </td>
+          <td><%= link_to "Show", user_path(user.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>ユーザーいません</p>
+<% end %>
